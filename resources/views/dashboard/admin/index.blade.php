@@ -1,9 +1,4 @@
-
-@extends('layouts.app')
-
+@extends('layouts.admin.main')
 @section('content')
-<div class="container">
-    <h5>I am your dashboard</h5>
-</div>
 
- @endsection
+@endsection

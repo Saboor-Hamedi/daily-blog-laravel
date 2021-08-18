@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('index');
 })->middleware('guest');
 
-Route::middleware(['middleware'=>'PreventBackHistory'])->group(function () {
+Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
    Auth::routes();
 });
 
