@@ -14,8 +14,7 @@
 
         <section class="post-cards">
             <div class="rows">
-                @foreach ($posts as $post)
-                 
+                @forelse ($posts as $post)
                     <article  class="card-inner-body">
                         <div class="card-inner-body-image">
                             <img src="{{ asset('/storage/postImages/'. $post->image) }}" alt="">
@@ -42,11 +41,15 @@
                             </div>
                         </div>
                  </article >
-                @endforeach
+                    @empty
+                    <div class="alert alert-info">No post uploaded</div>
+                @endforelse
              </div>
-            <div class="mt-2">
-                {{ $posts->links() }}
-            </div>
+                <div class="mt-2 ">
+                  {{ $posts->links() }}
+                </div>
+                 
+             
         </section>
-       
+      
  @endsection

@@ -6,17 +6,20 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         User::factory()->create([
-            'name' => 'Saboor', 
+            'name' => 'Admin', 
             'email' => 'admin@gmail.com', 
-            'password' => bcrypt('123'), 
+            'password' => bcrypt('thisisadmin'),
+            'status' => 0, // admin  
+        ]);
+        User::factory()->create([
+            'name' => 'Saboor', 
+            'email' => 'saboorhamedi49@gmail.com', 
+            'password' => bcrypt('saboor123'), 
+            'status' => 1, // normal user
         ]);
     }
 }

@@ -1,6 +1,6 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('dashboard.admin') }}" class="brand-link">
+    <a href="{{ route('dashboard.user') }}" class="brand-link">
       <img src="{{ asset('admin/image/AdminLTELogo.png') }}" 
       alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
@@ -35,18 +35,41 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"  data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="{{ route('dashboard.admin') }}" class="nav-link active">
+          <li class="nav-item menu-open ">
+            <a href="{{ route('dashboard.user') }}" class="nav-link ">
                 Home
             </a>
           </li>
+          @if (Auth::user()->is_Admin())
+             <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-users-cog" style="margin-right: 5px;"></i>
+                 <p>
+                  Admin
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('admin') }}" class="nav-link">
+                    <p style="margin-left: 5px;">
+                      <i class="fas fa-home" style="margin-right: 5px;"></i>
+                       Home
+                    </p>
+                  </a>
+                </li>
+            </ul>
+          </li>
+          @endif
+           
           <li class="nav-header" style="font-weight:bold">
             Posts Section
           </li>
           {{-- posts --}}
+          
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-copy" style="margin-right: 5px;"></i>
                  <p>
                   Post
                   <i class="fas fa-angle-left right"></i>
@@ -66,7 +89,7 @@
           {{-- tags --}}
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fas fa-tags"></i>
+                <i class="fas fa-tags" style="margin-right: 5px;"></i>
                  <p>
                   Tags
                   <i class="fas fa-angle-left right"></i>
@@ -99,7 +122,7 @@
           {{-- categories --}}
            <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fas fa-search-location"></i>
+                <i class="fas fa-search-location" style="margin-right: 5px;"></i>
                  <p>
                   Category
                   <i class="fas fa-angle-left right"></i>
@@ -126,6 +149,17 @@
                 </li>
                
             </ul>
+          </li>
+           <li class="nav-header" style="font-weight:bold">
+           Profile
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('profiles.index', Auth::user()->id) }}" class="nav-link">
+              <p style="margin-left: 5px;">
+                <i class="fas fa-user" style="margin-right: 5px;"></i>
+                 {{ Auth::user()->name ?? '' }}
+              </p>
+            </a>
           </li>
           {{-- logout --}}
           <li class="nav-item bg-danger" style="border-radius: 5px;">

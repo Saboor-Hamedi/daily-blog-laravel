@@ -41,9 +41,13 @@
                                 <small>, {{ $posts->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v11.0&appId=1737352673142638&autoLogAppEvents=1" nonce="96aSks4g"></script>
+            <div class="fb-comments" 
+                 data-href="{{ Request::url() }}" 
+                 data-width="" data-numposts="2" ></div>
                  </article >
              </div>
-          
+
         </section>
    
 @endsection

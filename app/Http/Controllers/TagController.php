@@ -23,6 +23,6 @@ class TagController extends Controller
         $tag->name = $request->input('tag');
         $tag->slug = Str::slug($request->input('tag'),'-');
         $tag->save();
-         return redirect()->route('tags.index')->with('success', 'tag has created!');
+         return redirect()->route('tags.create')->with('success', 'New tag added');
     }
 }

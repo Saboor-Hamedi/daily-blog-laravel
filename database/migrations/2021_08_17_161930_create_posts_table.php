@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('body_post');
+            $table->boolean('is_published')->default(true);
             $table->foreignId('user_id')->constrained('users');
             $table->string('image')->nullable();
             $table->timestamps();

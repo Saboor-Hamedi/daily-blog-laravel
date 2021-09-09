@@ -27,7 +27,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence, 
             'slug'  => Str::slug($this->faker->sentence, '-'), 
             'body_post' => $this->faker->paragraph(6),
-            'user_id' => 1, 
+            'user_id' => rand(1,2), 
             'image' => $this->faker->image($imagePath, 400, 300 , null, false),
         ];
     }

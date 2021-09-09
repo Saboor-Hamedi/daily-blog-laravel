@@ -11,15 +11,15 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
-
-// use Illuminate\Pagination\LengthAwarePaginator;
 class PostController extends Controller
 {
     public function index()
     {
+      
         $tags = Tag::all();
         $categories = Category::all();
-       return view('dashboard.posts.index', compact('tags', 'categories'));
+        return view('dashboard.posts.index', compact('tags', 'categories'));
+        
     }
 
    public function store(Request $request)
@@ -45,7 +45,7 @@ class PostController extends Controller
         $post->save();  // save data
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
-        return redirect()->route('dashboard.admin')->with('success', 'Post created'); // redirect back with success message
+        return redirect()->route('dashboard.user')->with('success', 'Post created'); // redirect back with success message
     }
     
     public function show(Post $post){
@@ -82,7 +82,6 @@ public function update(Request $request, Post $post)
         if($request->categories !=null){
           $post->categories()->sync($request->categories);
         }
-        
         // upload image
         if ($request->hasFile('image')) {
             $oldFileName    = $post->image;
@@ -94,7 +93,7 @@ public function update(Request $request, Post $post)
             File::delete(storage_path('app/public/postImages/' . $oldFileName));
         }
         $post->save();  
-        return redirect()->route('dashboard.admin')->with('success', 'Post Updated'); // redirect back with 
+        return redirect()->route('dashboard.user')->with('success', 'Post Updated'); // redirect back with 
     }
     
     public function destroy(Post $post)
@@ -105,6 +104,6 @@ public function update(Request $request, Post $post)
             @unlink($deleteImage);
         }
     }
-    return redirect()->route('dashboard.admin')->with('success', 'Post deleted');
+    return redirect()->route('dashboard.user')->with('success', 'Post deleted');
 }
 }

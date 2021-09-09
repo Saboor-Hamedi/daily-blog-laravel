@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Auth;
 class Post extends Model
 {
     use HasFactory;
@@ -27,5 +27,8 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_posts')->withTimestamps();
+    }
+    public function if_User(){
+       return  $this->user->id == Auth::user()->id;
     }
 }
